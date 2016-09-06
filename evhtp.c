@@ -1692,7 +1692,7 @@ check_proto:
                                          evhtp_header_new("Connection", "close", 0, 0));
             }
 
-            if (!evhtp_header_find(request->headers_out, "Content-Length")) {
+            if (request->chunked == 0 && !evhtp_header_find(request->headers_out, "Content-Length")) {
                 evhtp_headers_add_header(request->headers_out,
                                          evhtp_header_new("Content-Length", "0", 0, 0));
             }
